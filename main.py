@@ -10,23 +10,10 @@ def main():
     filePath = '豆瓣Top250.xls'
     # askUrl(url)
     data = getData(baseUrl)
-    saveData(data,filePath)
+    for item in data:
+        print(item)
 
 
-# 保持数据
-def saveData(data,filePath):
-    print('saving....')
-    book = xlwt.Workbook(encoding='utf-8',style_compression=0)
-    sheet = book.add_sheet('豆瓣Top250',cell_overwrite_ok=True)
-    col = ("电影链接","封面链接","电影名","评分","评分人数","电影概况")
-    for i in range(len(col)):
-        sheet.write(0,i,col[i])
-    for i in range(250):
-        moiveData = data[i]
-        for j in range(len(col)):
-            sheet.write(i+1,j,moiveData[j])
-
-    book.save(filePath)
 
 
 
